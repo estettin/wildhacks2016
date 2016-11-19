@@ -8,7 +8,7 @@ model = capp.models.get('general-v1.3')
 def get_tags(filename):
     # predict with the model
     # model.predict_by_url(url='https://samples.clarifai.com/metro-north.jpg')
-    search_results = model.predict_url(filename)
+    search_results = model.predict_by_url(filename)
 
     response = []
 
