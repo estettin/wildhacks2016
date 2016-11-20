@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, session
 import twilio.twiml
-from predict import get_tags
+import predict
 
 
 SECRET_KEY = '357024b143141688264d414ce75447fe'
@@ -19,20 +19,14 @@ callers = {
 def hello_monkey():
 	"""Respond and greet the caller by name."""
 
-	image_url = request.values.get('MediaUrl0', None)
+	# image_url = "None"
+	# if request.values.get('MediaUrl0'):
+	# 	image_url = request.values.get('MediaUrl0')
+	# 	resp = twilio.twiml.Response()
+	# 	resp.message(image_url)
+	return predict.get_tags("https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/01/24/12/v2-cute-cat-picture.jpg")
+	
 
-	resp = twilio.twiml.Response()
-	resp.message(image_url)
-	print image_url
-
-	print "\n\n **********************	"
-	print str(resp)
-
-	try: 
-
-		return str(get_tags(str(resp)))
-	except:
-		return "hi"
 
 if __name__ == "__main__":
 	app.run(debug=True)
