@@ -22,15 +22,11 @@ def hello_monkey():
 	image_url = request.values.get('MediaUrl0', None)
 
 	resp = twilio.twiml.Response()
-	resp.message(image_url)
-	print image_url
 
-	print "\n\n **********************	"
-	print str(resp)
-
-	try: 
-
-		return str(get_tags(str(resp)))
+	try:
+		x = get_tags(image_url)
+		resp.message(str(x))
+		return str(resp)
 	except:
 		return "hi"
 
